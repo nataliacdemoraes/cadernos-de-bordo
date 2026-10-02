@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Caderno de Bordo — Revisão N1: uma semana na Vara Criminal</title>
+<style>
+  :root{
+    --noite:#0D2225; --marinho:#1D5557; --grafite:#23403F;
+    --dourado:#B8733E; --dourado-claro:#D9A273;
+    --papel:#F2F6F4; --branco:#FFFFFF; --linha:#CADAD6; --texto:#132628; --suave:#56706C;
+  }
+  *{box-sizing:border-box; -webkit-text-size-adjust:100%;}
+  body{
+    margin:0; background:var(--papel); color:var(--texto);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Calibri,Arial,sans-serif;
+    font-size:17px; line-height:1.55;
+  }
+  .env{max-width:820px; margin:0 auto; padding:0 16px 50px;}
+
+  header.capa{background:var(--noite); color:#EEF2EE; padding:26px 16px 22px; margin-bottom:20px;}
+  header.capa .env{padding:0 0 0 0;}
+  .selo{font-size:13px; letter-spacing:2px; text-transform:uppercase; color:#E3A873; font-weight:700;}
+  header.capa h1{font-size:26px; line-height:1.2; margin:8px 0 6px; font-weight:800;}
+  header.capa p{margin:0; color:#A9C2BE; font-size:16px;}
+
+  .ident{display:flex; gap:12px; flex-wrap:wrap; margin:0 0 8px;}
+  .ident .campo{flex:1 1 220px;}
+  .ident label{display:block; font-size:15px; font-weight:700; color:var(--marinho); margin-bottom:4px;}
+  .fixo{
+    border:1px solid var(--linha); border-radius:10px; background:#E4EEEB;
+    padding:11px; font-size:16px; color:var(--texto);
+  }
+
+  h2.bloco{
+    font-size:20px; margin:32px 0 4px; color:var(--noite); font-weight:800;
+    border-bottom:2px solid var(--dourado); padding-bottom:6px;
+  }
+
+  .item{background:var(--branco); border:1px solid var(--linha); border-radius:12px; padding:14px 16px 16px; margin:14px 0;}
+  .item .n{
+    display:inline-block; min-width:32px; height:32px; line-height:32px; text-align:center;
+    background:var(--dourado); color:#0D2225; border-radius:50%; font-weight:800; margin-right:9px; font-size:16px;
+  }
+  .item .perg{font-size:18px; font-weight:600; margin:0 0 12px;}
+
+  textarea, input[type=text]{
+    width:100%; border:1px solid var(--linha); border-radius:10px; padding:11px;
+    font:inherit; font-size:16px; background:var(--branco); color:var(--texto);
+  }
+  textarea{min-height:96px; resize:vertical;}
+
+  details{
+    border:1px solid var(--linha); border-left:5px solid var(--marinho);
+    border-radius:10px; background:#EEF5F3; margin:12px 0 0;
+  }
+  details>summary{
+    cursor:pointer; padding:11px 14px; font-weight:700; color:var(--marinho); font-size:16px;
+    list-style:none; min-height:44px;
+  }
+  details>summary::-webkit-details-marker{display:none;}
+  details>summary::before{content:"▸ "; color:var(--dourado); font-weight:800;}
+  details[open]>summary::before{content:"▾ ";}
+  details .conteudo{padding:0 14px 14px; font-size:16px; font-style:italic; color:var(--grafite);}
+  details .conteudo p{margin:0 0 10px;}
+  .fonte{font-style:normal; font-size:14px; color:var(--suave);}
+  .fonte a{color:var(--marinho);}
+
+  fieldset{border:0; margin:0 0 10px; padding:0;}
+  legend{font-size:15px; font-weight:700; color:var(--marinho); padding:0; margin-bottom:6px;}
+  label.op{
+    display:block; border:1px solid var(--linha); border-radius:10px; background:#F8FBFA;
+    padding:10px 12px; margin:6px 0; font-size:16px; cursor:pointer; min-height:44px;
+  }
+  label.op input{margin-right:9px; transform:scale(1.2);}
+  label.op:has(input:checked){border-color:var(--dourado); background:#F7E6D7; font-weight:600;}
+  .linha-op{display:flex; gap:8px; flex-wrap:wrap;}
+  .linha-op label.op{flex:1 1 140px; margin:6px 0;}
+
+  .termometro{background:#E4EEEB; border:1px solid var(--linha); border-radius:12px; padding:12px 14px; margin:10px 0;}
+  .termometro legend{color:var(--noite);}
+
+  .cartao-din{
+    display:flex; align-items:center; gap:10px; background:var(--branco);
+    border:1px solid var(--linha); border-radius:10px; padding:10px 12px; margin:8px 0;
+  }
+  .cartao-din input[type=text]{width:58px; text-align:center; font-weight:700; padding:9px 4px;}
+  .cartao-din .txt{flex:1 1 auto; font-size:16px;}
+  .quem{display:flex; gap:6px; flex-wrap:wrap; margin:2px 0 12px 0;}
+  .quem label{
+    border:1px solid var(--linha); border-radius:8px; background:#F8FBFA;
+    padding:8px 10px; font-size:15px; cursor:pointer; min-height:40px;
+  }
+  .quem label:has(input:checked){border-color:var(--dourado); background:#F7E6D7; font-weight:600;}
+  .quem input{margin-right:6px;}
+
+  .rascunho{
+    position:sticky; top:0; z-index:20; background:#F7E6D7; border:1px solid var(--dourado);
+    border-radius:12px; padding:12px 14px; margin:0 0 14px; font-size:16px;
+  }
+  .rascunho p{margin:0 0 10px;}
+  .rascunho .bts{display:flex; gap:8px; flex-wrap:wrap;}
+  .rascunho button{
+    flex:1 1 150px; border:1px solid var(--dourado); border-radius:10px; background:var(--noite);
+    color:#EEF2EE; font:inherit; font-weight:700; font-size:16px; padding:12px; min-height:46px; cursor:pointer;
+  }
+  .rascunho button.sec{background:transparent; color:var(--marinho);}
+
+  .entrega{
+    background:#F7E6D7; border:1px solid var(--dourado); border-left:6px solid var(--dourado);
+    border-radius:12px; padding:14px 16px; margin:16px 0 4px; font-size:16px;
+  }
+  .entrega h3{margin:0 0 6px; font-size:17px; color:var(--noite);}
+  .entrega p{margin:0 0 6px;}
+  .entrega p:last-child{margin:0;}
+  .entrega b{color:var(--marinho);}
+
+  .intro{color:var(--suave); font-size:16px; margin:8px 0 14px;}
+  .ato{background:var(--branco); border:1px solid var(--linha); border-radius:12px; padding:14px 16px 16px; margin:12px 0;}
+  .ato .fato{font-size:17px; margin:0 0 10px;}
+  .ato .n{
+    display:inline-block; min-width:30px; height:30px; line-height:30px; text-align:center;
+    background:var(--dourado); color:#0D2225; border-radius:50%; font-weight:800; margin-right:9px; font-size:15px;
+  }
+  .ato input[type=text]{margin-top:8px;}
+
+  .porta{display:flex; gap:8px; flex-wrap:wrap; margin:8px 0 6px;}
+  .porta label{
+    flex:1 1 170px; border:1px solid var(--linha); border-radius:10px; background:#F8FBFA;
+    padding:10px 12px; font-size:15px; cursor:pointer; min-height:44px;
+  }
+  .porta label:has(input:checked){border-color:var(--dourado); background:#F7E6D7; font-weight:600;}
+  .porta input{margin-right:7px;}
+  .legenda{font-size:15px; color:var(--suave); margin:0 0 14px; line-height:1.55;}
+  .legenda b{color:var(--marinho);}
+
+  .alts label{
+    display:block; border:1px solid var(--linha); border-radius:10px; background:#F8FBFA;
+    padding:11px 13px; margin:7px 0; font-size:16px; cursor:pointer; min-height:46px; line-height:1.45;
+  }
+  .alts label:has(input:checked){border-color:var(--dourado); background:#F7E6D7; font-weight:600;}
+  .alts input{margin-right:9px; transform:scale(1.15);}
+  .alts .letra{font-weight:800; color:var(--marinho); margin-right:6px;}
+
+  .grade label{
+    display:inline-block; border:1px solid var(--linha); border-radius:9px; background:#F8FBFA;
+    padding:9px 11px; margin:5px 5px 0 0; font-size:15px; cursor:pointer; min-height:42px;
+  }
+  .grade label:has(input:checked){border-color:var(--dourado); background:#F7E6D7; font-weight:700;}
+  .grade input{margin-right:6px;}
+
+  .placar{
+    background:var(--noite); color:#EEF2EE; border-radius:14px; padding:18px 20px; margin:18px 0 6px;
+  }
+  .placar h3{margin:0 0 12px; font-size:19px; color:#E3A873;}
+  .placar .linha{display:flex; justify-content:space-between; align-items:baseline; gap:12px; font-size:17px; margin:7px 0;}
+  .placar .num{font-size:22px; font-weight:800; color:#E3A873;}
+  .placar .total{border-top:1px solid rgba(227,168,115,.4); margin-top:12px; padding-top:12px;}
+  .placar .obs{font-size:14px; color:#A9C2BE; margin:10px 0 0; line-height:1.5;}
+
+  .acoes{margin-top:26px; padding:16px 0 4px; border-top:1px solid var(--linha);}
+  button.pdf{
+    width:100%; border:0; border-radius:12px; background:var(--noite); color:#fff;
+    font:inherit; font-size:18px; font-weight:700; padding:16px; min-height:52px; cursor:pointer;
+  }
+  .aviso{font-size:14px; color:var(--suave); margin:8px 2px 0;}
+  .assinatura{margin-top:30px; padding-top:14px; border-top:1px solid var(--linha); color:var(--suave); font-size:15px; text-align:center;}
+
+  @media print{
+    @page{margin:11mm 10mm;}
+    body{background:#fff; font-size:9.5pt; line-height:1.35;}
+    .env{max-width:none; padding:0;}
+    h2.bloco{font-size:12pt; margin:12px 0 2px; padding-bottom:3px;}
+    .item{padding:7px 9px 8px; margin:7px 0;}
+    .item .perg{font-size:10pt; margin:0 0 6px;}
+    .item .n{min-width:22px; height:22px; line-height:22px; font-size:9pt; margin-right:6px;}
+    .ato{padding:7px 9px 8px; margin:7px 0;}
+    .ato .fato{font-size:10pt; margin:0 0 6px;}
+    .ato .n{min-width:22px; height:22px; line-height:22px; font-size:9pt; margin-right:6px;}
+    .ato input[type=text]{margin-top:5px;}
+    .termometro{padding:6px 9px; margin:5px 0;}
+    .entrega{padding:8px 10px; margin:8px 0 2px; font-size:9.5pt;}
+    .intro{margin:4px 0 6px;}
+    input[type=text]{padding:5px 7px;}
+    .assinatura{margin-top:14px; padding-top:8px;}
+    header.capa{background:#fff; color:#000; border-bottom:3px solid var(--dourado); padding:0 0 10px;}
+    header.capa h1{color:var(--noite);} header.capa p{color:#333;} .selo{color:var(--grafite);}
+    .acoes, .rascunho{display:none;}
+    .alts label, .grade label{min-height:0; padding:5px 8px; margin:3px 0; font-size:9.5pt;}
+    .placar{break-inside:avoid; padding:10px 12px;}
+    .ato{break-inside:avoid; page-break-inside:avoid;}
+    details:not([open]){display:none;}
+    details>summary{color:var(--noite);}
+    .item, .termometro, .cartao-din{break-inside:avoid; page-break-inside:avoid;}
+    label.op, .quem label{min-height:0; padding:6px 8px;}
+    textarea{min-height:44px; padding:5px 7px;}
+  }
+
+  .dia{display:inline-block; font-size:13px; letter-spacing:1.5px; text-transform:uppercase; font-weight:800;
+       color:var(--dourado); margin:30px 0 0;}
+  h2.bloco{margin-top:4px;}
+  .cenario{background:var(--noite); color:#EEF2EE; border-radius:12px; padding:13px 16px; margin:10px 0 6px; font-size:16px; line-height:1.5;}
+  .item .cena{font-size:16px; color:var(--grafite); margin:0 0 8px; padding-left:12px; border-left:3px solid var(--dourado-claro); font-style:italic;}
+  textarea#duvida{min-height:90px;}
+  .leitura{background:var(--branco); border:1px solid var(--linha); border-radius:12px; padding:12px 16px; margin:14px 0; font-size:16px;}
+  .leitura b{color:var(--marinho);}
+  @media print{ .dia{margin:10px 0 0; font-size:8pt;} .cenario{background:#fff; color:#000; border:1px solid var(--linha); padding:6px 9px; font-size:9.5pt;} .item .cena{font-size:9.5pt; margin:0 0 4px;} }
+</style>
+</head>
+<body>
+<header class="capa"><div class="env">
+  <div class="selo">Caderno de Bordo · Revisão para a N1</div>
+  <h1>Uma semana na Vara Criminal</h1>
+  <p>Direito Processual Penal – Parte Geral · Profa. Natalia Cristina de Moraes</p>
+</div></header>
+<div class="env">
+  <div class="rascunho" id="bar" hidden>
+    <p id="bartxt"></p>
+    <div class="bts">
+      <button type="button" id="brest">Recuperar o que eu marquei</button>
+      <button type="button" class="sec" id="bdesc">Começar em branco</button>
+    </div>
+  </div>
+</div>
+<form class="env" id="cb" autocomplete="off">
+  <div class="ident">
+    <div class="campo"><label for="nome">Nome</label>
+      <input type="text" id="nome" name="nome" placeholder="escreva seu nome" autocomplete="off"></div>
+    <div class="campo"><label>Turma</label><div class="fixo">6º período</div></div>
+  </div>
+  <div class="entrega">
+    <h3>Como usar</h3>
+    <p>Durante uma semana, você é estagiário(a) de uma Vara Criminal de Itacoatiara. Cada item é uma situação que chega à sua mesa. Quando aparecer no slide a faixa <b>“Caderno de Bordo · item N”</b>, a professora lê a pergunta e você marca aqui.</p>
+    <p>São 24 itens, todos de assinalar. O placar no fim se preenche sozinho e não diz quais você acertou.</p>
+  </div>
+  <div class="entrega">
+    <h3>Entrega e visto</h3>
+    <p>Ao final da aula, gere o PDF do que você marcou e envie <b>hoje mesmo</b> para <b>natalia.moraes@fametro.edu.br</b>.</p>
+    <p>Cada entrega no prazo vale <b>1 visto</b>. Cada visto vale <b>0,25</b> na nota, até o teto de <b>1,00 ponto</b>.</p>
+    <p>O caderno guarda um rascunho neste aparelho. Se você fechar sem querer, ele oferece a recuperação quando abrir de novo. O que vale para o visto é o PDF enviado.</p>
+  </div>
+  <div class="dia">Segunda-feira</div>
+  <h2 class="bloco">1. A norma processual penal</h2>
+  <div class="cenario">Primeiro dia de estágio na Vara Criminal. Antes das audiências, a juíza gosta de conversar sobre a teoria, e cada conversa vira uma pergunta para você.</div>
+  <div class="item" data-q="i1">
+    <p class="cena">A juíza pergunta: “Para você, o que é o processo penal?”</p>
+    <p class="perg"><span class="n">1</span>Qual resposta mostra que você entendeu as duas funções do processo penal?</p>
+    <div class="alts">
+      <label><input type="radio" name="i1" value="0"><span class="letra">A)</span>O conjunto de normas que define os crimes e as penas.</label>
+      <label><input type="radio" name="i1" value="1"><span class="letra">B)</span>O instrumento pelo qual o Estado apura e julga a infração e, ao mesmo tempo, a garantia do acusado contra o arbítrio.</label>
+      <label><input type="radio" name="i1" value="2"><span class="letra">C)</span>O procedimento administrativo que a polícia usa para descobrir o autor do crime.</label>
+    </div>
+  </div>
+  <div class="item" data-q="i2">
+    <p class="cena">Na estante do gabinete, um livro de história descreve tribunais antigos em que o mesmo julgador investigava em segredo, produzia as provas, acusava e julgava, e o acusado era tratado como objeto.</p>
+    <p class="perg"><span class="n">2</span>Que sistema processual é esse?</p>
+    <div class="alts">
+      <label><input type="radio" name="i2" value="0"><span class="letra">A)</span>Inquisitivo.</label>
+      <label><input type="radio" name="i2" value="1"><span class="letra">B)</span>Acusatório.</label>
+      <label><input type="radio" name="i2" value="2"><span class="letra">C)</span>Misto.</label>
+    </div>
+  </div>
+  <div class="item" data-q="i3">
+    <p class="cena">A juíza pede que você anote, para uma palestra, qual sistema o Brasil adota e onde isso está escrito.</p>
+    <p class="perg"><span class="n">3</span>O que você anota?</p>
+    <div class="alts">
+      <label><input type="radio" name="i3" value="0"><span class="letra">A)</span>Misto, porque o CPP de 1941 nunca foi alterado nesse ponto.</label>
+      <label><input type="radio" name="i3" value="1"><span class="letra">B)</span>Inquisitivo, porque o juiz pode produzir prova livremente.</label>
+      <label><input type="radio" name="i3" value="2"><span class="letra">C)</span>Acusatório, com base no art. 3º-A do CPP e na separação de funções da Constituição, que faz do Ministério Público o titular da ação penal pública.</label>
+    </div>
+    <details><summary>CPP, art. 3º-A</summary><div class="conteudo">
+      <p>“O processo penal terá estrutura acusatória, vedadas a iniciativa do juiz na fase de investigação e a substituição da atuação probatória do órgão de acusação.”</p>
+      <p class="fonte">Texto completo, só para conferência: <a href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm" target="_blank" rel="noopener">abrir a lei</a></p>
+    </div></details>
+    <details><summary>Constituição, art. 129, I</summary><div class="conteudo">
+      <p>“São funções institucionais do Ministério Público: I - promover, privativamente, a ação penal pública, na forma da lei;”</p>
+      <p class="fonte">Texto completo, só para conferência: <a href="https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm" target="_blank" rel="noopener">abrir a lei</a></p>
+    </div></details>
+  </div>
+  <div class="item" data-q="i4">
+    <p class="cena">Uma pessoa liga para o gabinete: quer que a própria juíza mande a polícia fazer uma busca na casa do vizinho, sem que ninguém tenha pedido nada no inquérito.</p>
+    <p class="perg"><span class="n">4</span>A juíza pode determinar a busca por iniciativa própria?</p>
+    <div class="alts">
+      <label><input type="radio" name="i4" value="0"><span class="letra">A)</span>Não: na fase de investigação o juiz não toma a iniciativa; decide o que lhe é pedido pela polícia, pelo Ministério Público ou pela defesa.</label>
+      <label><input type="radio" name="i4" value="1"><span class="letra">B)</span>Sim, porque o juiz deve buscar a verdade real.</label>
+      <label><input type="radio" name="i4" value="2"><span class="letra">C)</span>Sim, desde que depois comunique o Ministério Público.</label>
+    </div>
+    <details><summary>CPP, art. 3º-A</summary><div class="conteudo">
+      <p>“O processo penal terá estrutura acusatória, vedadas a iniciativa do juiz na fase de investigação e a substituição da atuação probatória do órgão de acusação.”</p>
+      <p class="fonte">Texto completo, só para conferência: <a href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm" target="_blank" rel="noopener">abrir a lei</a></p>
+    </div></details>
+  </div>
+  <div class="item" data-q="i5">
+    <p class="cena">Na biblioteca do fórum, você encontra os autos de um processo de impeachment de um Presidente da República por crime de responsabilidade, julgado pelo Senado.</p>
+    <p class="perg"><span class="n">5</span>Esse processo segue o Código de Processo Penal?</p>
+    <div class="alts">
+      <label><input type="radio" name="i5" value="0"><span class="letra">A)</span>Sim: todo processo no território brasileiro segue o CPP, sem exceção.</label>
+      <label><input type="radio" name="i5" value="1"><span class="letra">B)</span>Não: as prerrogativas nos crimes de responsabilidade estão entre as ressalvas do art. 1º do CPP e têm regras próprias.</label>
+      <label><input type="radio" name="i5" value="2"><span class="letra">C)</span>Só na fase de recurso.</label>
+    </div>
+    <details><summary>CPP, art. 1º</summary><div class="conteudo">
+      <p>“Art. 1º O processo penal reger-se-á, em todo o território brasileiro, por este Código, ressalvados:</p>
+      <p>I - os tratados, as convenções e regras de direito internacional;</p>
+      <p>II - as prerrogativas constitucionais do Presidente da República, dos ministros de Estado, nos crimes conexos com os do Presidente da República, e dos ministros do Supremo Tribunal Federal, nos crimes de responsabilidade (Constituição, arts. 86, 89, § 2º, e 100);</p>
+      <p>III - os processos da competência da Justiça Militar;</p>
+      <p>IV - os processos da competência do tribunal especial (Constituição, art. 122, nº 17);</p>
+      <p>V - os processos por crimes de imprensa.</p>
+      <p>Parágrafo único. Aplicar-se-á, entretanto, este Código aos processos referidos nos nºs IV e V, quando as leis especiais que os regulam não dispuserem de modo diverso.”</p>
+      <p class="fonte">Texto completo, só para conferência: <a href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm" target="_blank" rel="noopener">abrir a lei</a></p>
+    </div></details>
+  </div>
+  <div class="item" data-q="i6">
+    <p class="cena">Uma lei nova, puramente processual, muda a forma de intimar as partes. O processo que você acompanha começou há um ano.</p>
+    <p class="perg"><span class="n">6</span>Como ficam a próxima intimação e as que já foram feitas?</p>
+    <div class="alts">
+      <label><input type="radio" name="i6" value="0"><span class="letra">A)</span>Tudo segue a lei antiga até o fim do processo.</label>
+      <label><input type="radio" name="i6" value="1"><span class="letra">B)</span>A próxima segue a lei nova, e as antigas precisam ser refeitas.</label>
+      <label><input type="radio" name="i6" value="2"><span class="letra">C)</span>A próxima segue a lei nova, e as antigas continuam válidas.</label>
+    </div>
+    <details><summary>CPP, art. 2º</summary><div class="conteudo">
+      <p>“A lei processual penal aplicar-se-á desde logo, sem prejuízo da validade dos atos realizados sob a vigência da lei anterior.”</p>
+      <p class="fonte">Texto completo, só para conferência: <a href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm" target="_blank" rel="noopener">abrir a lei</a></p>
+    </div></details>
+  </div>
+  <div class="item" data-q="i7">
+    <p class="cena">Um colega de estágio pergunta sobre uma lei que ampliou um prazo decadencial, isto é, o tempo que a vítima tem para agir sob pena de extinção da punibilidade.</p>
+    <p class="perg"><span class="n">7</span>Que tipo de norma é essa, e ela alcança fatos anteriores?</p>
+    <div class="alts">
+      <label><input type="radio" name="i7" value="0"><span class="letra">A)</span>Norma mista: por ser mais gravosa, não alcança fatos anteriores.</label>
+      <label><input type="radio" name="i7" value="1"><span class="letra">B)</span>Norma puramente processual: vale desde logo, inclusive para fatos anteriores.</label>
+      <label><input type="radio" name="i7" value="2"><span class="letra">C)</span>Norma penal pura: só vale para crimes cometidos dez anos depois.</label>
+    </div>
+    <details><summary>Constituição, art. 5º, XL</summary><div class="conteudo">
+      <p>“a lei penal não retroagirá, salvo para beneficiar o réu;”</p>
+      <p class="fonte">Texto completo, só para conferência: <a href="https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm" target="_blank" rel="noopener">abrir a lei</a></p>
+    </div></details>
+  </div>
+  <div class="item" data-q="i8">
+    <p class="cena">Um estudante de outro curso afirma: “se no direito penal a analogia contra o réu é proibida, no processo penal é igual”.</p>
+    <p class="perg"><span class="n">8</span>Ele está certo?</p>
+    <div class="alts">
+      <label><input type="radio" name="i8" value="0"><span class="letra">A)</span>Está certo: os dois ramos seguem exatamente a mesma regra.</label>
+      <label><input type="radio" name="i8" value="1"><span class="letra">B)</span>Está errado: no processo penal a analogia só vale se as partes concordarem.</label>
+      <label><input type="radio" name="i8" value="2"><span class="letra">C)</span>Está errado: o CPP admite analogia; a proibição da analogia contra o réu é do direito penal material, ligada à legalidade dos crimes e das penas.</label>
+    </div>
+    <details><summary>CPP, art. 3º</summary><div class="conteudo">
+      <p>“A lei processual penal admitirá interpretação extensiva e aplicação analógica, bem como o suplemento dos princípios gerais de direito.”</p>
+      <p class="fonte">Texto completo, só para conferência: <a href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm" target="_blank" rel="noopener">abrir a lei</a></p>
+    </div></details>
+  </div>
+  <div class="dia">Terça-feira</div>
+  <h2 class="bloco">2. O ato processual</h2>
+  <div class="cenario">Hoje você fica no cartório, contando prazos e conferindo intimações.</div>
+  <div class="item" data-q="i9">
+    <p class="cena">O advogado da defesa foi intimado numa quinta-feira de um prazo de cinco dias. Não há feriado na semana.</p>
+    <p class="perg"><span class="n">9</span>Em que dia o prazo vence?</p>
+    <div class="alts">
+      <label><input type="radio" name="i9" value="0"><span class="letra">A)</span>Na segunda-feira, porque o prazo começa a contar na própria quinta.</label>
+      <label><input type="radio" name="i9" value="1"><span class="letra">B)</span>Na terça-feira: a quinta não conta, e sábado e domingo contam normalmente.</label>
+      <label><input type="radio" name="i9" value="2"><span class="letra">C)</span>Na quinta-feira seguinte, porque sábado e domingo não contam.</label>
+    </div>
+    <details><summary>CPP, art. 798, caput e §§ 1º e 3º</summary><div class="conteudo">
+      <p>“Todos os prazos correrão em cartório e serão contínuos e peremptórios, não se interrompendo por férias, domingo ou dia feriado.”</p>
+      <p>“§ 1º Não se computará no prazo o dia do começo, incluindo-se, porém, o do vencimento.”</p>
+      <p>“§ 3º O prazo que terminar em domingo ou dia feriado considerar-se-á prorrogado até o dia útil imediato.”</p>
+      <p class="fonte">Texto completo, só para conferência: <a href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm" target="_blank" rel="noopener">abrir a lei</a></p>
+    </div></details>
+  </div>
+  <div class="item" data-q="i10">
+    <p class="cena">Uma intimação saiu com o nome do advogado escrito errado, mas ele soube, compareceu e praticou o ato dentro do prazo.</p>
+    <p class="perg"><span class="n">10</span>O ato deve ser anulado?</p>
+    <div class="alts">
+      <label><input type="radio" name="i10" value="0"><span class="letra">A)</span>Não: sem prejuízo não se declara nulidade, e o comparecimento supriu a falha.</label>
+      <label><input type="radio" name="i10" value="1"><span class="letra">B)</span>Sim, porque qualquer erro de forma gera nulidade.</label>
+      <label><input type="radio" name="i10" value="2"><span class="letra">C)</span>Sim, mas só se o Ministério Público concordar.</label>
+    </div>
+    <details><summary>CPP, arts. 563 e 570</summary><div class="conteudo">
+      <p>“Art. 563. Nenhum ato será declarado nulo, se da nulidade não resultar prejuízo para a acusação ou para a defesa.”</p>
+      <p>“Art. 570. A falta ou a nulidade da citação, da intimação ou notificação estará sanada, desde que o interessado compareça, antes de o ato consumar-se, embora declare que o faz para o único fim de argüi-la. [...]”</p>
+      <p class="fonte">Texto completo, só para conferência: <a href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm" target="_blank" rel="noopener">abrir a lei</a></p>
+    </div></details>
+  </div>
+  <div class="dia">Quarta-feira</div>
+  <h2 class="bloco">3. O inquérito policial</h2>
+  <div class="cenario">Chega à Vara um inquérito: de madrugada, dois homens renderam o caixa de uma agência de passagens fluviais no porto de Itacoatiara e levaram o dinheiro. Um deles foi preso logo depois.</div>
+  <div class="item" data-q="i11">
+    <p class="cena">Foi a Polícia Militar que fez a prisão no porto.</p>
+    <p class="perg"><span class="n">11</span>Quem preside o inquérito sobre o roubo?</p>
+    <div class="alts">
+      <label><input type="radio" name="i11" value="0"><span class="letra">A)</span>A Polícia Militar, que atendeu a ocorrência.</label>
+      <label><input type="radio" name="i11" value="1"><span class="letra">B)</span>A polícia civil, como polícia judiciária, por meio do delegado de polícia.</label>
+      <label><input type="radio" name="i11" value="2"><span class="letra">C)</span>O Ministério Público, que é o titular da ação penal.</label>
+    </div>
+    <details><summary>Constituição, art. 144, § 4º</summary><div class="conteudo">
+      <p>“Às polícias civis, dirigidas por delegados de polícia de carreira, incumbem, ressalvada a competência da União, as funções de polícia judiciária e a apuração de infrações penais, exceto as militares.”</p>
+      <p class="fonte">Texto completo, só para conferência: <a href="https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm" target="_blank" rel="noopener">abrir a lei</a></p>
+    </div></details>
+  </div>
+  <div class="item" data-q="i12">
+    <p class="cena">O advogado do preso pede para ver o laudo pericial e o auto de apreensão já juntados aos autos, e também a interceptação telefônica que ainda está em andamento.</p>
+    <p class="perg"><span class="n">12</span>O que ele pode ver?</p>
+    <div class="alts">
+      <label><input type="radio" name="i12" value="0"><span class="letra">A)</span>Tudo, porque o inquérito é público.</label>
+      <label><input type="radio" name="i12" value="1"><span class="letra">B)</span>Nada, porque o inquérito é sigiloso.</label>
+      <label><input type="radio" name="i12" value="2"><span class="letra">C)</span>O que já está documentado nos autos; a diligência em andamento pode ficar em sigilo.</label>
+    </div>
+    <details><summary>Súmula Vinculante 14</summary><div class="conteudo">
+      <p>“É direito do defensor, no interesse do representado, ter acesso amplo aos elementos de prova que, já documentados em procedimento investigatório realizado por órgão com competência de polícia judiciária, digam respeito ao exercício do direito de defesa.”</p>
+      <p class="fonte">Texto completo, só para conferência: <a href="https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=26&sumula=1230" target="_blank" rel="noopener">abrir a lei</a></p>
+    </div></details>
+  </div>
+  <div class="item" data-q="i13">
+    <p class="cena">Depois de ouvir todo mundo, o delegado se convence de que um dos investigados não participou do roubo.</p>
+    <p class="perg"><span class="n">13</span>O que o delegado pode fazer quanto a esse investigado?</p>
+    <div class="alts">
+      <label><input type="radio" name="i13" value="0"><span class="letra">A)</span>Relatar o que apurou e remeter os autos; ele não pode arquivar o inquérito.</label>
+      <label><input type="radio" name="i13" value="1"><span class="letra">B)</span>Arquivar o inquérito em relação a ele.</label>
+      <label><input type="radio" name="i13" value="2"><span class="letra">C)</span>Devolver os autos à vítima.</label>
+    </div>
+    <details><summary>CPP, art. 17</summary><div class="conteudo">
+      <p>“A autoridade policial não poderá mandar arquivar autos de inquérito.”</p>
+      <p class="fonte">Texto completo, só para conferência: <a href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm" target="_blank" rel="noopener">abrir a lei</a></p>
+    </div></details>
+  </div>
+  <div class="item" data-q="i14">
+    <p class="cena">Você lê o rascunho de uma sentença em outro caso. A condenação por lesão corporal se apoia no laudo do exame de corpo de delito feito logo depois do fato, e a lesão já sarou.</p>
+    <p class="perg"><span class="n">14</span>Esse laudo, feito na fase de investigação, pode ser considerado pelo juiz?</p>
+    <div class="alts">
+      <label><input type="radio" name="i14" value="0"><span class="letra">A)</span>Não: nada do que vem do inquérito pode ser considerado.</label>
+      <label><input type="radio" name="i14" value="1"><span class="letra">B)</span>Sim: é prova não repetível, uma das ressalvas do art. 155, submetida depois ao contraditório.</label>
+      <label><input type="radio" name="i14" value="2"><span class="letra">C)</span>Só se o réu confessar em juízo.</label>
+    </div>
+    <details><summary>CPP, art. 155</summary><div class="conteudo">
+      <p>“O juiz formará sua convicção pela livre apreciação da prova produzida em contraditório judicial, não podendo fundamentar sua decisão exclusivamente nos elementos informativos colhidos na investigação, ressalvadas as provas cautelares, não repetíveis e antecipadas.”</p>
+      <p class="fonte">Texto completo, só para conferência: <a href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm" target="_blank" rel="noopener">abrir a lei</a></p>
+    </div></details>
+  </div>
+  <div class="dia">Quinta-feira</div>
+  <h2 class="bloco">4. O procedimento do inquérito</h2>
+  <div class="cenario">O dia é de pilha alta: pedidos de instauração, prazos correndo, um arquivamento e uma audiência de custódia.</div>
+  <div class="item" data-q="i15">
+    <p class="cena">Um comerciante registra na delegacia que foi ameaçado por um cliente, mas diz ao delegado que não quer processar ninguém.</p>
+    <p class="perg"><span class="n">15</span>O delegado pode instaurar inquérito?</p>
+    <div class="alts">
+      <label><input type="radio" name="i15" value="0"><span class="letra">A)</span>Sim, de ofício, porque todo inquérito pode ser instaurado assim.</label>
+      <label><input type="radio" name="i15" value="1"><span class="letra">B)</span>Sim, se o juiz mandar.</label>
+      <label><input type="radio" name="i15" value="2"><span class="letra">C)</span>Não: a ameaça é crime de ação pública condicionada, e sem representação o inquérito não pode começar.</label>
+    </div>
+    <details><summary>CPP, art. 5º, §§ 4º e 5º</summary><div class="conteudo">
+      <p>“§ 4º O inquérito, nos crimes em que a ação pública depender de representação, não poderá sem ela ser iniciado.”</p>
+      <p>“§ 5º Nos crimes de ação privada, a autoridade policial somente poderá proceder a inquérito a requerimento de quem tenha qualidade para intentá-la.”</p>
+      <p class="fonte">Texto completo, só para conferência: <a href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm" target="_blank" rel="noopener">abrir a lei</a></p>
+    </div></details>
+  </div>
+  <div class="item" data-q="i16">
+    <p class="cena">O preso do roubo do porto está detido desde segunda-feira, e as diligências continuam.</p>
+    <p class="perg"><span class="n">16</span>Qual é o prazo para concluir o inquérito?</p>
+    <div class="alts">
+      <label><input type="radio" name="i16" value="0"><span class="letra">A)</span>30 dias, prorrogáveis.</label>
+      <label><input type="radio" name="i16" value="1"><span class="letra">B)</span>10 dias, contados da prisão, com possibilidade de prorrogação fundamentada pelo juiz das garantias.</label>
+      <label><input type="radio" name="i16" value="2"><span class="letra">C)</span>90 dias, porque o crime é grave.</label>
+    </div>
+    <details><summary>CPP, art. 10, caput</summary><div class="conteudo">
+      <p>“O inquérito deverá terminar no prazo de 10 dias, se o indiciado tiver sido preso em flagrante, ou estiver preso preventivamente, contado o prazo, nesta hipótese, a partir do dia em que se executar a ordem de prisão, ou no prazo de 30 dias, quando estiver solto, mediante fiança ou sem ela.”</p>
+      <p class="fonte">Texto completo, só para conferência: <a href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm" target="_blank" rel="noopener">abrir a lei</a></p>
+    </div></details>
+    <details><summary>CPP, art. 3º-B, § 2º</summary><div class="conteudo">
+      <p>“Se o investigado estiver preso, o juiz das garantias poderá, mediante representação da autoridade policial e ouvido o Ministério Público, prorrogar, uma única vez, a duração do inquérito por até 15 (quinze) dias, após o que, se ainda assim a investigação não for concluída, a prisão será imediatamente relaxada.”</p>
+      <p>Nota da professora (não é texto da lei): o STF, na ADI 6.298, admitiu novas prorrogações fundamentadas e afastou a soltura automática.</p>
+      <p class="fonte">Texto completo, só para conferência: <a href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm" target="_blank" rel="noopener">abrir a lei</a></p>
+    </div></details>
+  </div>
+  <div class="item" data-q="i17">
+    <p class="cena">Em outro inquérito, o Ministério Público decide arquivar. A vítima discorda.</p>
+    <p class="perg"><span class="n">17</span>O que a vítima pode fazer?</p>
+    <div class="alts">
+      <label><input type="radio" name="i17" value="0"><span class="letra">A)</span>Pedir, em 30 dias da comunicação, a revisão do arquivamento dentro do próprio Ministério Público.</label>
+      <label><input type="radio" name="i17" value="1"><span class="letra">B)</span>Nada: o arquivamento é definitivo e não admite revisão.</label>
+      <label><input type="radio" name="i17" value="2"><span class="letra">C)</span>Pedir ao delegado que reabra o inquérito por conta própria.</label>
+    </div>
+    <details><summary>CPP, art. 28, § 1º</summary><div class="conteudo">
+      <p>“Se a vítima, ou seu representante legal, não concordar com o arquivamento do inquérito policial, poderá, no prazo de 30 (trinta) dias do recebimento da comunicação, submeter a matéria à revisão da instância competente do órgão ministerial, conforme dispuser a respectiva lei orgânica.”</p>
+      <p class="fonte">Texto completo, só para conferência: <a href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm" target="_blank" rel="noopener">abrir a lei</a></p>
+    </div></details>
+  </div>
+  <div class="item" data-q="i18">
+    <p class="cena">Na audiência de custódia, fica claro que o preso foi detido em casa dois dias depois do fato, sem mandado e sem nenhuma situação de flagrante.</p>
+    <p class="perg"><span class="n">18</span>O que o juiz deve fazer?</p>
+    <div class="alts">
+      <label><input type="radio" name="i18" value="0"><span class="letra">A)</span>Conceder liberdade provisória com fiança.</label>
+      <label><input type="radio" name="i18" value="1"><span class="letra">B)</span>Converter em preventiva, porque o crime é grave.</label>
+      <label><input type="radio" name="i18" value="2"><span class="letra">C)</span>Relaxar a prisão, porque ela é ilegal.</label>
+    </div>
+    <details><summary>CPP, art. 310</summary><div class="conteudo">
+      <p>“Após receber o auto de prisão em flagrante, no prazo máximo de até 24 (vinte e quatro) horas após a realização da prisão, o juiz deverá promover audiência de custódia [...] e, nessa audiência, o juiz deverá, fundamentadamente: I - relaxar a prisão ilegal; ou II - converter a prisão em flagrante em preventiva, quando presentes os requisitos constantes do art. 312 deste Código, e se revelarem inadequadas ou insuficientes as medidas cautelares diversas da prisão; ou III - conceder liberdade provisória, com ou sem fiança.”</p>
+      <p class="fonte">Texto completo, só para conferência: <a href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm" target="_blank" rel="noopener">abrir a lei</a></p>
+    </div></details>
+  </div>
+  <div class="dia">Sexta-feira, de manhã</div>
+  <h2 class="bloco">5. Prisões e prova ilícita</h2>
+  <div class="cenario">O caso do porto volta à sua mesa com duas novidades sobre o que foi apreendido.</div>
+  <div class="item" data-q="i19">
+    <p class="cena">A faca usada no roubo foi apreendida e levada à perícia num saco sem lacre, e ninguém registrou quem a transportou.</p>
+    <p class="perg"><span class="n">19</span>O que se perde com isso?</p>
+    <div class="alts">
+      <label><input type="radio" name="i19" value="0"><span class="letra">A)</span>A garantia de que o material periciado é o mesmo que foi apreendido: a cadeia de custódia se rompeu.</label>
+      <label><input type="radio" name="i19" value="1"><span class="letra">B)</span>Nada, porque o laudo não depende do caminho que o objeto fez.</label>
+      <label><input type="radio" name="i19" value="2"><span class="letra">C)</span>A competência do juiz, que passa para outra vara.</label>
+    </div>
+    <details><summary>CPP, art. 158-A, caput</summary><div class="conteudo">
+      <p>“Considera-se cadeia de custódia o conjunto de todos os procedimentos utilizados para manter e documentar a história cronológica do vestígio coletado em locais ou em vítimas de crimes, para rastrear sua posse e manuseio a partir de seu reconhecimento até o descarte.”</p>
+      <p class="fonte">Texto completo, só para conferência: <a href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm" target="_blank" rel="noopener">abrir a lei</a></p>
+    </div></details>
+  </div>
+  <div class="item" data-q="i20">
+    <p class="cena">Policiais entraram numa casa sem mandado e sem fundadas razões, acharam um papel com o endereço de um depósito e, depois, com mandado, apreenderam lá o dinheiro do roubo.</p>
+    <p class="perg"><span class="n">20</span>E o dinheiro apreendido no depósito?</p>
+    <div class="alts">
+      <label><input type="radio" name="i20" value="0"><span class="letra">A)</span>Vale como prova, porque houve mandado.</label>
+      <label><input type="radio" name="i20" value="1"><span class="letra">B)</span>Também é inadmissível, porque derivou da prova ilícita, salvo se houvesse fonte independente.</label>
+      <label><input type="radio" name="i20" value="2"><span class="letra">C)</span>Vale, desde que o réu confesse.</label>
+    </div>
+    <details><summary>CPP, art. 157, §§ 1º e 2º</summary><div class="conteudo">
+      <p>“§ 1º São também inadmissíveis as provas derivadas das ilícitas, salvo quando não evidenciado o nexo de causalidade entre umas e outras, ou quando as derivadas puderem ser obtidas por uma fonte independente das primeiras.”</p>
+      <p>“§ 2º Considera-se fonte independente aquela que por si só, seguindo os trâmites típicos e de praxe, próprios da investigação ou instrução criminal, seria capaz de conduzir ao fato objeto da prova.”</p>
+      <p class="fonte">Texto completo, só para conferência: <a href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm" target="_blank" rel="noopener">abrir a lei</a></p>
+    </div></details>
+  </div>
+  <div class="dia">Sexta-feira, à tarde</div>
+  <h2 class="bloco">6. Reconhecimento de pessoas</h2>
+  <div class="cenario">A juíza comenta que um reconhecimento feito de qualquer jeito já derrubou muitas condenações. Aí você olha para o caso do porto.</div>
+  <div class="item" data-q="i21">
+    <p class="cena">Na delegacia, mostraram à vítima do roubo uma única foto e ela disse: “é ele”. Em juízo, ela apenas confirmou o que disse na delegacia.</p>
+    <p class="perg"><span class="n">21</span>Esse reconhecimento sustenta a condenação?</p>
+    <div class="alts">
+      <label><input type="radio" name="i21" value="0"><span class="letra">A)</span>Não: foi feito fora do art. 226, e a simples confirmação em juízo não corrige o vício.</label>
+      <label><input type="radio" name="i21" value="1"><span class="letra">B)</span>Sim, porque a vítima tem certeza.</label>
+      <label><input type="radio" name="i21" value="2"><span class="letra">C)</span>Sim, porque foi confirmado em juízo.</label>
+    </div>
+    <details><summary>CPP, art. 226</summary><div class="conteudo">
+      <p>“Quando houver necessidade de fazer-se o reconhecimento de pessoa, proceder-se-á pela seguinte forma: I - a pessoa que tiver de fazer o reconhecimento será convidada a descrever a pessoa que deva ser reconhecida; II - a pessoa, cujo reconhecimento se pretender, será colocada, se possível, ao lado de outras que com ela tiverem qualquer semelhança, convidando-se quem tiver de fazer o reconhecimento a apontá-la; III - [...] IV - do ato de reconhecimento lavrar-se-á auto pormenorizado, subscrito pela autoridade, pela pessoa chamada para proceder ao reconhecimento e por duas testemunhas presenciais.”</p>
+      <p class="fonte">Texto completo, só para conferência: <a href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm" target="_blank" rel="noopener">abrir a lei</a></p>
+    </div></details>
+  </div>
+  <div class="dia">Sábado</div>
+  <h2 class="bloco">7. Texto transversal: Nilma Lino Gomes</h2>
+  <div class="cenario">No sábado, o grupo de estudo se reúne para ler “Relações étnico-raciais, educação e descolonização dos currículos”.</div>
+  <div class="item" data-q="i22">
+    <p class="cena">O grupo começa pela página 99, onde a autora, apoiada em Boaventura de Sousa Santos (2006), fala em duas vertentes.</p>
+    <p class="perg"><span class="n">22</span>Para a autora, a vertente externa se interroga sobre:</p>
+    <div class="alts">
+      <label><input type="radio" name="i22" value="0"><span class="letra">A)</span>a diversidade de métodos dentro da própria ciência.</label>
+      <label><input type="radio" name="i22" value="1"><span class="letra">B)</span>as avaliações padronizadas nacionais e internacionais.</label>
+      <label><input type="radio" name="i22" value="2"><span class="letra">C)</span>a exclusividade epistemológica da ciência e a sua relação com outros conhecimentos.</label>
+    </div>
+    <details><summary>GOMES, 2012, p. 99</summary><div class="conteudo">
+      <p>A teoria educacional e o campo do currículo participam de um movimento composto por duas vertentes: “a interna, que questiona o caráter monolítico do cânone epistemológico [...]; e a externa, que se interroga sobre a exclusividade epistemológica da ciência e se concentra nas relações entre a ciência e outros conhecimentos”.</p>
+    </div></details>
+  </div>
+  <div class="item" data-q="i23">
+    <p class="cena">Na página 105, alguém lê em voz alta um trecho sobre o silêncio.</p>
+    <p class="perg"><span class="n">23</span>Como a autora, a partir de Gonçalves (1985), entende o silêncio sobre a questão racial na escola?</p>
+    <div class="alts">
+      <label><input type="radio" name="i23" value="0"><span class="letra">A)</span>Como um ritual pedagógico a favor da discriminação: diz de algo que se sabe, mas não se quer ou não se pode falar.</label>
+      <label><input type="radio" name="i23" value="1"><span class="letra">B)</span>Como sinal de que o tema já foi superado pela escola.</label>
+      <label><input type="radio" name="i23" value="2"><span class="letra">C)</span>Como neutralidade, que protege os alunos do conflito.</label>
+    </div>
+    <details><summary>GOMES, 2012, p. 105</summary><div class="conteudo">
+      <p>“Não se pode confundir esse silêncio com o desconhecimento sobre o assunto ou a sua invisibilidade. [...] O silêncio diz de algo que se sabe, mas não se quer falar ou é impedido de falar.”</p>
+    </div></details>
+  </div>
+  <div class="item" data-q="i24">
+    <p class="cena">O grupo termina discutindo a Lei 10.639/03, que alterou a LDB.</p>
+    <p class="perg"><span class="n">24</span>Para a autora, a obrigatoriedade trazida pela Lei 10.639/03 só será um passo de ruptura se:</p>
+    <div class="alts">
+      <label><input type="radio" name="i24" value="0"><span class="letra">A)</span>virar uma disciplina separada no currículo.</label>
+      <label><input type="radio" name="i24" value="1"><span class="letra">B)</span>não for confundida com novos conteúdos, e sim entendida como mudança estrutural, conceitual, epistemológica e política.</label>
+      <label><input type="radio" name="i24" value="2"><span class="letra">C)</span>ficar restrita às aulas de História.</label>
+    </div>
+    <details><summary>GOMES, 2012, p. 106</summary><div class="conteudo">
+      <p>“[...] o trato da questão racial no currículo e as mudanças advindas da obrigatoriedade do ensino de História da África e das culturas afro-brasileiras nos currículos das escolas da educação básica só poderão ser considerados como um dos passos no processo de ruptura epistemológica e cultural na educação brasileira se esses não forem confundidos com ‘novos conteúdos escolares a serem inseridos’ ou como mais uma disciplina. Trata-se, na realidade, de uma mudança estrutural, conceitual, epistemológica e política.”</p>
+    </div></details>
+  </div>
+  <div class="leitura">
+    <p><b>Para estudar depois da aula.</b> Obra do acervo da Biblioteca Digital da FAMETRO, pelo Portal do Aluno: REIS, Alexandre Cebrian Araújo; GONÇALVES, Victor Eduardo Rios. <i>Direito Processual Penal</i>. Coleção Esquematizado. 15. ed. São Paulo: Saraiva Jur, 2026, capítulos da introdução e do inquérito policial.</p>
+    <p>Texto transversal: GOMES, Nilma Lino. Relações étnico-raciais, educação e descolonização dos currículos. <i>Currículo sem Fronteiras</i>, v. 12, n. 1, p. 98-109, jan./abr. 2012.</p>
+  </div>
+  <div class="placar">
+    <h3>Como eu fui</h3>
+    <div class="linha"><span>Unidade I (itens 1 a 10)</span><span><span class="num" id="pU1">0</span> de 10</span></div>
+    <div class="linha"><span>Unidade II (itens 11 a 21)</span><span><span class="num" id="pU2">0</span> de 11</span></div>
+    <div class="linha"><span>Texto transversal (itens 22 a 24)</span><span><span class="num" id="pTT">0</span> de 3</span></div>
+    <div class="linha total"><span><b>Total</b></span><span><span class="num" id="pTotal">0</span> de 24</span></div>
+    <p class="obs">O placar se preenche sozinho conforme você marca. Ele não diz quais você acertou: isso a turma constrói junto com a professora.</p>
+  </div>
+  <h2 class="bloco">Termômetro dos blocos</h2>
+  <p class="legenda">Marque só o que ficou confuso. Se nada ficou, use o botão do fim.</p>
+  <div class="termometro"><fieldset><legend>1. A norma processual penal</legend><div class="linha-op">
+    <label class="op"><input type="radio" name="t1" value="ok">Entendi</label>
+    <label class="op"><input type="radio" name="t1" value="d">Fiquei na dúvida</label>
+    <label class="op"><input type="radio" name="t1" value="n">Não entendi</label>
+  </div></fieldset></div>
+  <div class="termometro"><fieldset><legend>2. O ato processual</legend><div class="linha-op">
+    <label class="op"><input type="radio" name="t2" value="ok">Entendi</label>
+    <label class="op"><input type="radio" name="t2" value="d">Fiquei na dúvida</label>
+    <label class="op"><input type="radio" name="t2" value="n">Não entendi</label>
+  </div></fieldset></div>
+  <div class="termometro"><fieldset><legend>3. O inquérito policial</legend><div class="linha-op">
+    <label class="op"><input type="radio" name="t3" value="ok">Entendi</label>
+    <label class="op"><input type="radio" name="t3" value="d">Fiquei na dúvida</label>
+    <label class="op"><input type="radio" name="t3" value="n">Não entendi</label>
+  </div></fieldset></div>
+  <div class="termometro"><fieldset><legend>4. O procedimento do inquérito</legend><div class="linha-op">
+    <label class="op"><input type="radio" name="t4" value="ok">Entendi</label>
+    <label class="op"><input type="radio" name="t4" value="d">Fiquei na dúvida</label>
+    <label class="op"><input type="radio" name="t4" value="n">Não entendi</label>
+  </div></fieldset></div>
+  <div class="termometro"><fieldset><legend>5. Prisões e prova ilícita</legend><div class="linha-op">
+    <label class="op"><input type="radio" name="t5" value="ok">Entendi</label>
+    <label class="op"><input type="radio" name="t5" value="d">Fiquei na dúvida</label>
+    <label class="op"><input type="radio" name="t5" value="n">Não entendi</label>
+  </div></fieldset></div>
+  <div class="termometro"><fieldset><legend>6. Reconhecimento de pessoas</legend><div class="linha-op">
+    <label class="op"><input type="radio" name="t6" value="ok">Entendi</label>
+    <label class="op"><input type="radio" name="t6" value="d">Fiquei na dúvida</label>
+    <label class="op"><input type="radio" name="t6" value="n">Não entendi</label>
+  </div></fieldset></div>
+  <div class="termometro"><fieldset><legend>7. Texto transversal: Nilma Lino Gomes</legend><div class="linha-op">
+    <label class="op"><input type="radio" name="t7" value="ok">Entendi</label>
+    <label class="op"><input type="radio" name="t7" value="d">Fiquei na dúvida</label>
+    <label class="op"><input type="radio" name="t7" value="n">Não entendi</label>
+  </div></fieldset></div>
+  <div class="termometro">
+    <label class="op" style="background:#F7E6D7; border-color:var(--dourado); font-weight:700;">
+      <input type="checkbox" name="tudo_ok" value="1">Nada ficou confuso
+    </label>
+  </div>
+  <h2 class="bloco">Registro de dúvida</h2>
+  <p class="legenda">Opcional. Se alguma coisa ficou sem resposta, anote aqui para estudar antes da prova.</p>
+  <textarea id="duvida" name="duvida" placeholder="minha dúvida"></textarea>
+  <div class="acoes">
+    <button class="pdf" type="button" onclick="window.print()">Gerar o PDF do que eu marquei</button>
+    <p class="aviso">No iPhone, toque no botão, escolha “Opções” e depois “Imprimir”, e salve como PDF. Envie o PDF hoje para natalia.moraes@fametro.edu.br.</p>
+  </div>
+  <p class="assinatura">Profa. Natalia Cristina de Moraes</p>
+</form>
+<script>
+(function(){
+  var CHAVE = 'cb_revisao_n1_pp';
+  var form = document.getElementById('cb');
+  var bar = document.getElementById('bar');
+  var bartxt = document.getElementById('bartxt');
+  if (!form) return;
+
+  function campos(){ return form.querySelectorAll('input, textarea'); }
+
+  // 1. o caderno SEMPRE abre em branco
+  function limpar(){
+    form.reset();
+    var ds = document.querySelectorAll('details');
+    for (var i = 0; i < ds.length; i++) ds[i].open = false;
+  }
+  limpar();
+  // ao voltar de outro aplicativo o navegador devolve a página como estava:
+  // aí não se limpa nada, senão o aluno perde o que já tinha escrito
+  window.addEventListener('pageshow', function(ev){ if (!ev.persisted) limpar(); });
+
+  // 2. mas guarda um rascunho neste aparelho, para nada se perder
+  function ler(){
+    try { var b = localStorage.getItem(CHAVE); return b ? JSON.parse(b) : null; }
+    catch (e) { return null; }
+  }
+  function gravar(){
+    var d = { quando: Date.now(), v: {} };
+    var cs = campos();
+    for (var i = 0; i < cs.length; i++){
+      var c = cs[i];
+      if (!c.name) continue;
+      if (c.type === 'radio' || c.type === 'checkbox'){ if (c.checked) d.v[c.name + '|' + c.value] = 1; }
+      else if (c.value !== '') d.v[c.name] = c.value;
+    }
+    try { localStorage.setItem(CHAVE, JSON.stringify(d)); } catch (e) {}
+  }
+  function restaurar(d){
+    var cs = campos();
+    for (var i = 0; i < cs.length; i++){
+      var c = cs[i];
+      if (!c.name) continue;
+      if (c.type === 'radio' || c.type === 'checkbox'){ if (d.v[c.name + '|' + c.value]) c.checked = true; }
+      else if (d.v[c.name] !== undefined) c.value = d.v[c.name];
+    }
+  }
+  function quando(ms){
+    var a = new Date(ms), b = new Date();
+    var hm = ('0' + a.getHours()).slice(-2) + 'h' + ('0' + a.getMinutes()).slice(-2);
+    var mesmo = a.toDateString() === b.toDateString();
+    if (mesmo) return 'hoje, às ' + hm;
+    return ('0' + a.getDate()).slice(-2) + '/' + ('0' + (a.getMonth() + 1)).slice(-2) + ', às ' + hm;
+  }
+
+  var draft = ler();
+  if (draft && draft.v && Object.keys(draft.v).length && bar){
+    bartxt.textContent = 'Encontrei o que você escreveu ' + quando(draft.quando) + ' neste aparelho. Quer recuperar?';
+    bar.hidden = false;
+    document.getElementById('brest').addEventListener('click', function(){
+      restaurar(draft); bar.hidden = true;
+      if (typeof placar === 'function') placar();
+      window.scrollTo(0, 0);
+    });
+    document.getElementById('bdesc').addEventListener('click', function(){
+      try { localStorage.removeItem(CHAVE); } catch (e) {}
+      bar.hidden = true;
+    });
+  }
+
+  var t = null;
+  function agendar(){ if (t) clearTimeout(t); t = setTimeout(gravar, 500); }
+  form.addEventListener('input', agendar);
+  form.addEventListener('change', agendar);
+  window.addEventListener('pagehide', gravar);
+
+
+  // 3. placar automatico: conta acertos sem dizer quais
+  var G1 = {"i1": "1", "i2": "0", "i3": "2", "i4": "0", "i5": "1", "i6": "2", "i7": "0", "i8": "2", "i9": "1", "i10": "0"};
+  var G2 = {"i11": "1", "i12": "2", "i13": "0", "i14": "1", "i15": "2", "i16": "1", "i17": "0", "i18": "2", "i19": "0", "i20": "1", "i21": "0"};
+  var G3 = {"i22": "2", "i23": "0", "i24": "1"};
+  function conta(gab){
+    var n = 0;
+    for (var k in gab){
+      var m = form.querySelector('input[name="' + k + '"]:checked');
+      if (m && m.value === gab[k]) n++;
+    }
+    return n;
+  }
+  function placar(){
+    var a = conta(G1), b = conta(G2), c = conta(G3), el;
+    if ((el = document.getElementById('pU1'))) el.textContent = a;
+    if ((el = document.getElementById('pU2'))) el.textContent = b;
+    if ((el = document.getElementById('pTT'))) el.textContent = c;
+    if ((el = document.getElementById('pTotal'))) el.textContent = (a + b + c);
+  }
+  window.placar = placar;
+  form.addEventListener('change', placar);
+  placar();
+
+  // 4. ao imprimir, os campos crescem para caber o que foi escrito
+  window.addEventListener('beforeprint', function(){
+    var ts = document.querySelectorAll('textarea');
+    for (var i = 0; i < ts.length; i++){
+      ts[i].style.height = 'auto';
+      ts[i].style.height = (ts[i].scrollHeight + 6) + 'px';
+    }
+  });
+})();
+</script>
+</body>
+</html>
