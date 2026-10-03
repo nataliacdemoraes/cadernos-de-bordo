@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Material de Apoio · Marcação de Vade Mecum</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{
+  --verde:#1F4D3B; --verde2:#163A2C; --dourado:#C9A227; --papel:#FBF8F1; --papel2:#F2EBDA;
+  --card:#FFFFFF; --line:#E1D9C4; --txt:#2B2620; --muted:#6B6259;
+  --amarelo:#F3C34E; --azul:#4A85B0; --verdeclaro:#6FA671; --laranja:#E0793C; --roxo:#8C6BAF; --vermelho:#C0453A;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --papel:#171F1B; --papel2:#1E2A23; --card:#212B25; --line:#33413A; --txt:#EDE7D8; --muted:#A7A092;
+  }
+}
+:root[data-theme="dark"]{
+  --papel:#171F1B; --papel2:#1E2A23; --card:#212B25; --line:#33413A; --txt:#EDE7D8; --muted:#A7A092;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--papel);color:var(--txt);font-family:Georgia,'Times New Roman',serif;line-height:1.5}
+header{background:linear-gradient(135deg,var(--verde),var(--verde2));color:#fff;padding:26px 20px 22px;padding-top:calc(26px + env(safe-area-inset-top,0px));position:relative;overflow:hidden}
+header .tabs{position:absolute;right:-6px;top:14px;display:flex;flex-direction:column;gap:6px}
+header .tabs span{display:block;width:34px;height:20px;border-radius:6px 0 0 6px}
+header h1{margin:0 0 4px;font-size:23px;color:var(--dourado);position:relative;z-index:1}
+header p{margin:0;font-size:13.5px;color:#E9E3D2;position:relative;z-index:1}
+main{max-width:740px;margin:0 auto;padding:18px 16px 60px}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 16px;margin:0 0 16px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+h2{color:var(--verde);font-size:19px;margin:0 0 10px;border-bottom:2px solid var(--papel2);padding-bottom:8px}
+h3{color:var(--verde);font-size:15px;margin:14px 0 6px}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:6px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--verde);color:#fff;font-weight:600}
+tr:nth-child(even) td{background:var(--papel2)}
+.legenda span{display:inline-block;padding:4px 12px;border-radius:8px;font-weight:700;font-size:12.5px;margin:3px 6px 3px 0;color:#2B2620}
+.legenda span.roxo,.legenda span.errado-label{color:#fff}
+ul{padding-left:20px;font-size:13.5px}
+li{margin-bottom:4px}
+.fonte{font-size:11.5px;color:var(--muted);margin-top:16px}
+.macete{background:#FBF1D8;border:1px solid var(--dourado);border-radius:10px;padding:10px 14px;font-size:12.5px;margin-top:10px}
+.par{display:flex;gap:10px;margin-top:8px;flex-wrap:wrap}
+.par div{flex:1;min-width:140px;border-radius:10px;padding:8px 10px;font-size:12.5px}
+.certo{background:#E7F2E9;border:1px solid #3F8D5A}
+.errado{background:#F7E4E1;border:1px solid var(--vermelho)}
+.tag{display:inline-block;font-weight:700;padding:1px 8px;border-radius:6px;font-size:11px;margin-bottom:4px;color:#fff}
+.tag.ok{background:#3F8D5A}
+.tag.err{background:var(--vermelho)}
+.grid-codigos{display:grid;grid-template-columns:1fr;gap:10px;margin-top:8px}
+.cod-card{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.cod-card .cod-head{padding:7px 12px;color:#fff;font-weight:700;font-size:13px}
+.cod-card ul{margin:8px 12px;font-size:12.5px}
+.chip{display:inline-block;font-weight:700;font-size:11px;padding:1px 7px;border-radius:5px;margin:2px 0}
+.tblwrap{overflow-x:auto}
+td.num{font-weight:700;color:var(--verde);text-align:center}
+.toc{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.toc a{font-size:12px;text-decoration:none;background:var(--papel2);color:var(--verde);padding:5px 10px;border-radius:20px;border:1px solid var(--line)}
+</style>
+</head>
+<body>
+<header>
+  <div class="tabs">
+    <span style="background:var(--amarelo)"></span>
+    <span style="background:var(--azul)"></span>
+    <span style="background:var(--verdeclaro)"></span>
+    <span style="background:var(--laranja)"></span>
+    <span style="background:var(--roxo)"></span>
+  </div>
+  <h1>Material de Apoio</h1>
+  <p>Curso de Marcação de Vade Mecum · Profa. Natalia Cristina de Moraes</p>
+</header>
+<main>
+
+<section>
+  <h2>Índice rápido</h2>
+  <div class="toc">
+    <a href="#regras">O que pode e não pode</a>
+    <a href="#clipes">Como usar o clipe</a>
+    <a href="#certoerrado">Certo x errado</a>
+    <a href="#cores">Cores por tipo de trecho</a>
+    <a href="#remissoes">Remissões</a>
+    <a href="#artigos">As marcações da aula</a>
+    <a href="#remissao-def">O que é remissão</a>
+    <a href="#indice">Como usar o índice</a>
+    <a href="#checklist">Checklist antes da prova</a>
+  </div>
+</section>
+
+<section id="regras">
+  <h2>O que pode e o que não pode</h2>
+  <table>
+    <tr><th>Pode</th><th>Não pode</th></tr>
+    <tr><td>Marca-texto, traço ou sublinhado simples</td><td>Esquemas, roteiros e palavras-chave</td></tr>
+    <tr><td>Remissão simples a artigo ou lei (só número)</td><td>Remissão que descreve conteúdo ou estrutura peça</td></tr>
+    <tr><td>Clipes, coloridos ou não, para separar códigos</td><td>Setas, círculos, asteriscos e outros símbolos</td></tr>
+    <tr><td>Aba de editora com ramo do Direito ou lei impressos</td><td>Aba em branco, post-it ou nota adesiva</td></tr>
+    <tr><td>Índice temático ou alfabético simples</td><td>Índice que monta roteiro de peça</td></tr>
+  </table>
+  <p class="fonte">Vale para a prova da FAMETRO e para a 2ª fase do Exame de Ordem. Referência: edital de abertura do 47º Exame de Ordem Unificado (OAB/FGV), item 3.6.14.3 e Anexo III: "será permitida, exclusivamente, a consulta a legislação, súmulas, enunciados, orientações jurisprudenciais e precedentes normativos sem qualquer anotação ou comentário". A 2ª fase do 47º Exame é em 18/10/2026. Confira sempre o edital vigente antes da sua prova.</p>
+</section>
+
+<section id="clipes">
+  <h2>Como usar o clipe</h2>
+  <ul>
+    <li>Prenda um clipe na primeira página de cada código</li>
+    <li>Deixe a ponta para fora, na borda de cima ou do lado</li>
+    <li>Uma cor por código, e a legenda fica na cabeça</li>
+    <li>Nada escrito e nada colado no clipe</li>
+  </ul>
+  <div class="macete">💡 <b>Macete:</b> clipe separa o código; o artigo, você acha pelo índice.</div>
+</section>
+
+<section id="certoerrado">
+  <h2>Certo x errado, na prática</h2>
+  <div class="par">
+    <div class="certo"><span class="tag ok">Certo</span><br>Grifo e sublinhado simples, sem nenhum símbolo.</div>
+    <div class="errado"><span class="tag err">Errado</span><br>Círculos, setas ou rabiscos ao redor do texto.</div>
+  </div>
+  <div class="par">
+    <div class="certo"><span class="tag ok">Certo</span><br>Remissão só com o número: "art. 313".</div>
+    <div class="errado"><span class="tag err">Errado</span><br>Remissão explicada: "art. 313, ver requisitos".</div>
+  </div>
+  <div class="par">
+    <div class="certo"><span class="tag ok">Certo</span><br>Aba impressa de editora, com o código ou o ramo.</div>
+    <div class="errado"><span class="tag err">Errado</span><br>Aba em branco, post-it ou nota adesiva, mesmo sem nada escrito.</div>
+  </div>
+  <p style="margin-top:10px">Post-it não tem versão "certa": pouco ou muito, a regra proíbe os dois.</p>
+</section>
+
+<section id="cores">
+  <h2>Cinco cores, cinco perguntas da prova</h2>
+  <div class="legenda">
+    <span style="background:var(--amarelo)">Amarelo — Cabe? (cabimento)</span>
+    <span style="background:var(--azul);color:#fff">Azul — O que precisa ter? (requisitos)</span>
+    <span style="background:var(--verdeclaro)">Verde — Em quanto tempo? (prazos e números)</span>
+    <span style="background:var(--laranja);color:#fff">Laranja — Tem exceção? ("salvo", "exceto")</span>
+    <span style="background:var(--roxo);color:#fff">Roxo — Qual a pena? (penas e sanções)</span>
+  </div>
+  <p>Na hora da prova, leia o enunciado e pergunte: ele quer saber se cabe, o que precisa ter, o prazo, a exceção ou a pena? Vá direto na cor. Marque só as palavras exatas, nunca o artigo inteiro. A legenda fica na sua cabeça, nunca escrita no livro.</p>
+  <div class="macete">💡 <b>Macete:</b> cinco cores é o teto. Quem usa menos, acha mais rápido na hora da prova.</div>
+</section>
+
+<section id="remissoes">
+  <h2>Remissões: do proibido ao permitido</h2>
+  <table>
+    <tr><th>Proibido</th><th>Permitido</th></tr>
+    <tr><td>Art. 319 CPC, requisitos da petição inicial</td><td>Art. 330</td></tr>
+    <tr><td>Art. 312 CPP, prisão preventiva, ver requisitos</td><td>Art. 313</td></tr>
+    <tr><td>Art. 593 CPP, apelação em 5 dias, razões em 8</td><td>Art. 600</td></tr>
+    <tr><td>Art. 121 CP, homicídio qualificado é crime hediondo</td><td>Lei 8.072/1990</td></tr>
+  </table>
+  <p>Ao apontar para outro código, escreva a sigla junto do número (ex.: CPC 330), porque números de artigo se repetem entre códigos. A remissão vale só para um tema isolado: uma sequência de remissões que reproduz a ordem de uma peça é proibida.</p>
+  <div class="macete">💡 <b>Macete:</b> leia a sua remissão em voz alta — se ela contar uma história, é anotação. Apague e deixe só o número.</div>
+</section>
+
+<section id="artigos">
+  <h2>As 27 marcações da aula</h2>
+  <p style="font-size:13.5px;margin-top:0">Os artigos que mais aparecem em provas, do jeito que marcamos juntos. Se faltou algum, complete em casa com esta lista.</p>
+  <div class="tblwrap"><table>
+    <tr><th>#</th><th>Artigo</th><th>O que marcar</th><th>Remissão</th></tr>
+<tr><td class="num">1</td><td><b>CF, art. 5º, LXI</b></td><td><span class="chip" style="background:var(--azul);color:#fff">Azul</span> flagrante ou ordem escrita do juiz<br><span class="chip" style="background:var(--laranja);color:#fff">Laranja</span> salvo transgressão militar</td><td><b>CPP 283</b></td></tr>
+<tr><td class="num">2</td><td><b>CF, art. 5º, LXVIII</b></td><td><span class="chip" style="background:var(--amarelo);color:#2B2620">Amarelo</span> quando cabe habeas corpus</td><td><b>CPP 647</b></td></tr>
+<tr><td class="num">3</td><td><b>CF, art. 5º, LXIX</b></td><td><span class="chip" style="background:var(--amarelo);color:#2B2620">Amarelo</span> quando cabe MS<br><span class="chip" style="background:var(--laranja);color:#fff">Laranja</span> não amparado por HC ou HD</td><td><b>Lei 12.016/2009</b></td></tr>
+<tr><td class="num">4</td><td><b>CP, art. 23</b></td><td><span class="chip" style="background:var(--laranja);color:#fff">Laranja</span> os três incisos (excludentes)</td><td><b>arts. 24 e 25</b></td></tr>
+<tr><td class="num">5</td><td><b>CP, art. 33, §2º</b></td><td><span class="chip" style="background:var(--verdeclaro);color:#2B2620">Verde</span> mais de 8 / de 4 a 8 / até 4 anos</td><td><b>art. 59</b></td></tr>
+<tr><td class="num">6</td><td><b>CP, art. 44</b></td><td><span class="chip" style="background:var(--azul);color:#fff">Azul</span> os três incisos (requisitos)</td><td><b>art. 43</b></td></tr>
+<tr><td class="num">7</td><td><b>CP, art. 59</b></td><td><span class="chip" style="background:var(--azul);color:#fff">Azul</span> as oito circunstâncias judiciais</td><td><b>art. 68</b></td></tr>
+<tr><td class="num">8</td><td><b>CP, art. 109</b></td><td><span class="chip" style="background:var(--verdeclaro);color:#2B2620">Verde</span> o prazo de cada inciso</td><td><b>art. 115</b></td></tr>
+<tr><td class="num">9</td><td><b>CP, art. 121</b></td><td><span class="chip" style="background:var(--roxo);color:#fff">Roxo</span> reclusão, de seis a vinte anos</td><td><b>Lei 8.072/1990</b></td></tr>
+<tr><td class="num">10</td><td><b>CPP, art. 41</b></td><td><span class="chip" style="background:var(--azul);color:#fff">Azul</span> o que a denúncia deve conter</td><td><b>art. 395</b></td></tr>
+<tr><td class="num">11</td><td><b>CPP, art. 302</b></td><td><span class="chip" style="background:var(--amarelo);color:#2B2620">Amarelo</span> os quatro incisos do flagrante</td><td><b>art. 310</b></td></tr>
+<tr><td class="num">12</td><td><b>CPP, art. 312</b></td><td><span class="chip" style="background:var(--azul);color:#fff">Azul</span> fundamentos e pressupostos</td><td><b>art. 313</b></td></tr>
+<tr><td class="num">13</td><td><b>CPP, art. 313</b></td><td><span class="chip" style="background:var(--amarelo);color:#2B2620">Amarelo</span> as hipóteses dos incisos<br><span class="chip" style="background:var(--verdeclaro);color:#2B2620">Verde</span> pena máxima acima de 4 anos</td><td><b>art. 319</b></td></tr>
+<tr><td class="num">14</td><td><b>CPP, art. 396</b></td><td><span class="chip" style="background:var(--verdeclaro);color:#2B2620">Verde</span> no prazo de 10 dias</td><td><b>art. 396-A</b></td></tr>
+<tr><td class="num">15</td><td><b>CPP, art. 397</b></td><td><span class="chip" style="background:var(--amarelo);color:#2B2620">Amarelo</span> os quatro incisos<br><span class="chip" style="background:var(--laranja);color:#fff">Laranja</span> salvo inimputabilidade</td><td><b>CP 23</b></td></tr>
+<tr><td class="num">16</td><td><b>CPP, art. 581</b></td><td><span class="chip" style="background:var(--amarelo);color:#2B2620">Amarelo</span> Caberá recurso, no sentido estrito</td><td><b>art. 586</b></td></tr>
+<tr><td class="num">17</td><td><b>CPP, art. 593</b></td><td><span class="chip" style="background:var(--amarelo);color:#2B2620">Amarelo</span> Caberá apelação<br><span class="chip" style="background:var(--verdeclaro);color:#2B2620">Verde</span> 5 (cinco) dias</td><td><b>art. 600</b></td></tr>
+<tr><td class="num">18</td><td><b>CPP, art. 647</b></td><td><span class="chip" style="background:var(--amarelo);color:#2B2620">Amarelo</span> Dar-se-á habeas corpus<br><span class="chip" style="background:var(--laranja);color:#fff">Laranja</span> salvo punição disciplinar</td><td><b>art. 648</b></td></tr>
+<tr><td class="num">19</td><td><b>CPP, art. 798</b></td><td><span class="chip" style="background:var(--verdeclaro);color:#2B2620">Verde</span> contínuos e peremptórios</td><td><b>CPC 219</b></td></tr>
+<tr><td class="num">20</td><td><b>CPC, art. 219</b></td><td><span class="chip" style="background:var(--verdeclaro);color:#2B2620">Verde</span> somente os dias úteis</td><td><b>CPP 798</b></td></tr>
+<tr><td class="num">21</td><td><b>CPC, art. 319</b></td><td><span class="chip" style="background:var(--azul);color:#fff">Azul</span> os incisos (requisitos da inicial)</td><td><b>art. 330</b></td></tr>
+<tr><td class="num">22</td><td><b>CPC, art. 335</b></td><td><span class="chip" style="background:var(--verdeclaro);color:#2B2620">Verde</span> prazo de 15 dias</td><td><b>art. 336</b></td></tr>
+<tr><td class="num">23</td><td><b>CPC, art. 1.009</b></td><td><span class="chip" style="background:var(--amarelo);color:#2B2620">Amarelo</span> Da sentença cabe apelação</td><td><b>art. 1.003, §5º</b></td></tr>
+<tr><td class="num">24</td><td><b>CPC, art. 1.015</b></td><td><span class="chip" style="background:var(--amarelo);color:#2B2620">Amarelo</span> os incisos (decisões agraváveis)</td><td><b>art. 1.003, §5º</b></td></tr>
+<tr><td class="num">25</td><td><b>CC, art. 186</b></td><td><span class="chip" style="background:var(--azul);color:#fff">Azul</span> ação ou omissão, culpa e dano</td><td><b>art. 927</b></td></tr>
+<tr><td class="num">26</td><td><b>CC, art. 927</b></td><td><span class="chip" style="background:var(--laranja);color:#fff">Laranja</span> parágrafo único (independe de culpa)</td><td><b>art. 944</b></td></tr>
+<tr><td class="num">27</td><td><b>CC, art. 206, §3º, V</b></td><td><span class="chip" style="background:var(--verdeclaro);color:#2B2620">Verde</span> três anos: reparação civil</td><td><b>art. 205</b></td></tr>
+  </table></div>
+</section>
+
+<section id="indice">
+  <h2>Como usar o índice, rápido</h2>
+  <ul>
+    <li>1. Pense no assunto que você precisa encontrar</li>
+    <li>2. Vá pela aba do código certo (CF, CC, CP, CPP, CPC...)</li>
+    <li>3. Vá para o índice do código (todo código traz o seu)</li>
+    <li>4. Já sabe o artigo que busca? Procure pela página no <b>índice sistemático</b> (lista de artigos em ordem numérica)</li>
+    <li>5. Não sabe o artigo, só o assunto? Vá pelo <b>índice alfabético</b> (lista de termos, de A a Z)</li>
+  </ul>
+  <div class="macete">💡 <b>Macete:</b> gaste os 2 primeiros minutos de qualquer prova só relembrando onde fica cada código no seu exemplar.</div>
+</section>
+
+<section id="remissao-def">
+  <h2>O que é remissão?</h2>
+  <p style="font-size:13.5px;margin-top:0">No dicionário: "ação de transferir a atenção do leitor ou consulente para outro texto ou outra parte do texto" (Dicionário Priberam). No Vade Mecum, é o número que leva você de um artigo a outro, como do art. 312 do CPP ao art. 313.</p>
+  <div class="par">
+    <div class="certo"><span class="tag ok">Certo</span><br>Só o número: "art. 313", escrito ao lado do art. 312.</div>
+    <div class="errado"><span class="tag err">Errado</span><br>Uma frase explicando: "art. 313, hipóteses da preventiva".</div>
+  </div>
+  <p style="font-size:12.5px;color:var(--muted)">Não confunda: remissão (de remeter) é diferente de remição, com ç, da remição de pena (LEP, art. 126).</p>
+</section>
+
+<section id="checklist">
+  <h2>Checklist antes da prova</h2>
+  <ul>
+    <li>Nenhuma palavra escrita além de número de artigo ou de lei</li>
+    <li>Nenhuma seta, círculo, asterisco ou outro símbolo</li>
+    <li>Nenhuma remissão que descreva o assunto</li>
+    <li>No máximo cinco cores, e nenhuma delas ligada a peça, pedido ou competência</li>
+    <li>Nenhuma página quase inteira colorida, nem legenda escrita no livro</li>
+    <li>Livro não comentado, não anotado, não comparado</li>
+    <li>Abas impressas de editora, com ramo do Direito ou lei, nunca em branco</li>
+    <li>Nenhum post-it, nota adesiva ou papel colado</li>
+  </ul>
+</section>
+
+<p class="fonte">Material preparado para o curso de marcação de Vade Mecum. As regras de consulta variam por edital: confira sempre a versão vigente do exame em que você vai prestar.</p>
+</main>
+</body>
+</html>
